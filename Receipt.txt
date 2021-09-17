@@ -1,0 +1,13 @@
+Email	babira23@gmail.com
+RoomType	Luxurious Suite
+RoomPrice	16000	
+Email	babira23@gmail.com
+RoomType	Standard Room
+RoomPrice	14000	
+Email	babira23@gmail.com
+RoomType	Twin Deluxe Room
+RoomPrice	120000	
+Email	babira23@gmail.com
+RoomType	Parking Area
+RoomPrice	0	
+Total: 150000
