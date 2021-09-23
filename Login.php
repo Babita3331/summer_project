@@ -10,10 +10,33 @@ header('location:Booking Form.php?type='.urlencode(serialize($roomType)));
 error_reporting(1);
 require('connection.php');
 extract($_REQUEST);
+$emailErr=$passwordErr="";
+$email=$password="";
 if(isset($login))
 {
-  if($eid=="" || $pass=="")
+  if(empty($_POST['eid']))
   {
+    $emailErr="Enter Email address";
+  }
+  else{
+    $email=$_POST['eid'];
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+  
+  if(empty($_POST['pass']))
+  {
+    $passwordErr="Enter Password";
+  }
+  else{
+    $password=$_POST['pass'];
+   
+   }
+
+  if(!empty($emailErr)||!empty($passwordErr))
+  {
+    
   $error= "<h4 style='color:red'>fill all details</h4>";  
   }   
   else
@@ -46,11 +69,12 @@ if(isset($login))
 </head>
 <body style="margin-top:50px;">
 <?php
-include('Menu Bar.php')
+include('Menu Bar.php');
 ?>
 <div class="container-fluid"><!-- Primary Id-->
   <div class="container">
     <div class="row"><br>
+    <center><?php echo $GET['msg'];?></center>
       <div class="col-sm-4"></div>
         <div class="col-sm-4 text-center"style="box-shadow:2px 2px 2px;background-color:#f4ac41;"><br>
 
@@ -59,10 +83,12 @@ include('Menu Bar.php')
           <?php echo @$error; ?>
           <form method="post"><br>
               <div class="form-group">
-                <input type="Email" class="form-control"name="eid"placeholder="Email Id" autocomplete="off"required >
+                <input type="text" class="form-control"name="eid"placeholder="Email Id" value="<?php echo htmlspecialchars($email)?>">
+                <span class="text-danger"><?php if(isset($emailErr)) echo htmlspecialchars($emailErr);?></span>
               </div>
             <div class="form-group">
-                <input type="Password" class="form-control"name="pass"placeholder="Password" autocomplete="off"required>
+                <input type="Password" class="form-control"name="pass"placeholder="Password" value="<?php echo htmlspecialchars($password);?>">
+                <span class="text-danger"><?php if(isset($passwordErr)) echo htmlspecialchars($passwordErr);?></span>
             </div>
           <input type="submit" value="Login" name="login" class="btn btn-primary btn-group btn-group-justified"required>
           <div class="form-group forget">

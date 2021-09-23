@@ -1,39 +1,13 @@
 <?php 
-include('Menu Bar.php');
 include('connection.php');
+include('Menu Bar.php');
 $roomType= $_GET['type'];
-$Occupancy=$_POST['Occupancy'];
-$cdate=$_POST['cdate'];
-$ctime=$_POST['ctime'];
-$codate=$_POST['codate'];
-if($eid=="")
-{
-header('location:Login.php');
-}
-$sql= mysqli_query($con,"select * from room_booking_details where email='$eid' "); 
-$result=mysqli_fetch_assoc($sql);
-//print_r($result);
-extract($_REQUEST);
-error_reporting(1);
-if(isset($savedata))
-{
-  $query= "select * from room_booking_details where email='$eid'and roomType='$roomType'";
-  $sql= mysqli_query($con,$query);
-  if(mysqli_num_rows($sql)) 
-  {
-  $error= "You have already booked this room";   
-  }
-  else
-  {
-   $sql="insert into room_booking_details(email,roomType,Occupancy,check_in_date,check_in_time,check_out_date) 
-  values('$eid','$roomType','$Occupancy','$cdate','$ctime','$codate')";
-   if(mysqli_query($con,$sql))
-   {
-   $msg="You have Successfully booked this room"; 
-   }
-  }
-}
+$name= $_GET['name'];
+$msg= $_GET['msg']; 
+$error= $_GET['error']; 
+// $error= $_GET['error']; 
 ?>
+
 <html>
 <head>
 <title>HMS | Payment</title>
@@ -47,9 +21,10 @@ if(isset($savedata))
 </head>
 <body>
   <div style="margin:100px 100px 100px 100px;">
-      <?php if($error){?><div class="alert alert-danger"><strong>ERROR</strong>:<p style="color:red"><?php echo htmlentities($error); ?> </p></div><?php } 
-				else if($msg){?><div class="alert alert-success"><strong>GREAT</strong>:<?php echo htmlentities($msg); 
-                ?> </div></br><?php 
+  <?php include('Menu Bar.php');?>
+      <?php if(isset($error)){?><div class="alert alert-danger"><strong>ERROR</strong>: <span class="text-danger"><?php echo htmlentities($error); ?></span></div><?php } 
+				else if(isset($msg)){?><div class="alert alert-success"><strong>GREAT</strong>: <span class="text-success"><?php echo htmlentities($msg); 
+                ?> </span></div></br><?php  
                 include('payment.php');
                 }?>
   </div> 

@@ -3,6 +3,7 @@ session_start();
 error_reporting(1);
 include('connection.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head><!--Head Open  Here-->
@@ -15,10 +16,11 @@ include('connection.php');
   <link href="fontawesome/css/all.css" rel="stylesheet">
   <link href="css/style.css"rel="stylesheet"/>
 </head> 
+
 <!--Head Open  Here-->
 <body style="margin-top:50px;">
   <?php
-      include('Menu Bar.php')
+      include('Menu Bar.php');
   ?>
 <div id="myCarousel" class="carousel slide" data-ride="carousel"> <!--Slider Image Start Here--> 
     <!-- Indicators -->
@@ -108,7 +110,7 @@ include('connection.php');
 </div>
 
 <?php
-  include('Footer.php')
+  include('Footer.php');
 ?>
 </body>
 </html>

@@ -10,6 +10,7 @@
   <link href="css/style.css"rel="stylesheet"/>
 </head>
 <body>
+
  <table class="table table-striped table-hover">
 <tr>
   <th>ID</th>
@@ -19,6 +20,7 @@
 <tr>
 <?php    
 include('connection.php');
+
 $roomType=$_GET['type'];
 
 $query = "SELECT room_booking_details.id, room_booking_details.email,room_booking_details.roomType,price 
@@ -46,8 +48,8 @@ while($results=mysqli_fetch_assoc($sql))
         <input value="3" name="pdc" type="hidden">
         <input value="EPAYTEST" name="scd" type="hidden">
         <input value="<?php echo $results['id'];?>" name="pid" type="hidden">
-        <input value="http://localhost/hms/esewa_success.php?email=<?php echo $eid;?>" type="hidden" name="su">
-        <input value="http://localhost/hms/esewa_failed.php?q=fu" type="hidden" name="fu">
+        <input value="http://localhost/hotel/hms/esewa_success.php?email=<?php echo $eid;?>" type="hidden" name="su">
+        <input value="http://localhost/hotel/hms/esewa_failed.php?q=fu" type="hidden" name="fu">
         <button style='margin-top:25px; padding:3px 10px 6px 10px;'type="submit" class="btn btn-primary">Pay</button>
         </form>
     <?php }}?>

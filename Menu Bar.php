@@ -1,7 +1,8 @@
 <?php 
+error_reporting(0);
 session_start();
-// $eid=$_SESSION['create_account_logged_in'];
-error_reporting(1);
+$eid=$_SESSION['create_account_logged_in']; 
+
 ?>
 <!--Menu Bar Close Here-->
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -22,7 +23,9 @@ error_reporting(1);
 		    <li><a href="image gallery.php"title="Gallery">Gallery </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <?php if($_SESSION['create_account_logged_in']!=""){?>
+      <li style="margin-top:15px; margin-right:30px;color:white;">Welcome: &nbsp;&nbsp;<?php echo htmlspecialchars($eid);?></li>
+      <?php }?>
         <li><a href="admin/index.php"title="Admin Login"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Admin Login</a></li>
 
         <?php 
