@@ -86,7 +86,7 @@ include('Menu Bar.php');
                 <input type="text" class="form-control"name="eid"placeholder="Email Id" value="<?php echo htmlspecialchars($email)?>">
                 <span class="text-danger"><?php if(isset($emailErr)) echo htmlspecialchars($emailErr);?></span>
               </div>
-            <div class="form-group">
+            <div class="form-group"> 
                 <input type="Password" class="form-control"name="pass"placeholder="Password" value="<?php echo htmlspecialchars($password);?>">
                 <span class="text-danger"><?php if(isset($passwordErr)) echo htmlspecialchars($passwordErr);?></span>
             </div>

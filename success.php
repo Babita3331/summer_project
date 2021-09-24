@@ -3,9 +3,9 @@ include('connection.php');
 include('Menu Bar.php');
 $roomType= $_GET['type'];
 $name= $_GET['name'];
-$msg= $_GET['msg']; 
+$success= $_GET['success']; 
 $error= $_GET['error']; 
-// $error= $_GET['error']; 
+
 ?>
 
 <html>
@@ -23,7 +23,7 @@ $error= $_GET['error'];
   <div style="margin:100px 100px 100px 100px;">
   <?php include('Menu Bar.php');?>
       <?php if(isset($error)){?><div class="alert alert-danger"><strong>ERROR</strong>: <span class="text-danger"><?php echo htmlentities($error); ?></span></div><?php } 
-				else if(isset($msg)){?><div class="alert alert-success"><strong>GREAT</strong>: <span class="text-success"><?php echo htmlentities($msg); 
+				else if(isset($success)){?><div class="alert alert-success"><strong>GREAT</strong>: <span class="text-success"><?php echo htmlentities($success); 
                 ?> </span></div></br><?php  
                 include('payment.php');
                 }?>

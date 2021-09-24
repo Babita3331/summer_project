@@ -5,7 +5,28 @@ require('../connection.php');
 extract($_REQUEST);
 if(isset($login))
 {
-	if($eid=="" || $pass=="")
+  if(empty($_POST['eid']))
+  {
+    $emailErr="Enter Email address";
+  }
+  else{
+    $email=$_POST['eid'];
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+
+  if(empty($_POST['pass']))
+  {
+    $passwordErr="Enter Password";
+  }
+  else{
+    $password=$_POST['pass'];
+   
+  }
+
+
+	if(!empty($emailErr)|| !empty($passwordErr))
 	{
 	$error= "<h3 style='color:red'>fill all details</h3>";	
 	}		
@@ -54,12 +75,14 @@ include('Menu Bar.php');
 			<?php echo @$error;?>
           <form action="" method="post"><br>
               <div class="form-group">
-                <input type="Email" class="form-control"name="eid" placeholder="Email Id"required>
+                <input type="Email" class="form-control" name="eid" placeholder="Email Id" value="<?php echo htmlspecialchars($email);?>">
+                <span style="color:white;"><?php if(isset($emailErr)) echo htmlspecialchars($emailErr);?></span>
               </div>
             <div class="form-group">
-                <input type="Password" class="form-control"name="pass" placeholder="Password"required>
+                <input type="Password" class="form-control" name="pass" placeholder="Password" value="<?php echo htmlspecialchars($password);?>">
+                <span style="color:white;"><?php if(isset($passwordErr)) echo htmlspecialchars($passwordErr);?></span>
             </div>
-          <input type="submit" value="Login" name="login" class="btn btn-primary btn-group btn-group-justified"required>
+          <input type="submit" value="Login" name="login" class="btn btn-primary btn-group btn-group-justified">
       	</form><br>  
         </div>
     </div><br>

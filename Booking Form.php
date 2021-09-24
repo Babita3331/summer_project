@@ -4,9 +4,9 @@ include('connection.php');
 include('Menu Bar.php');
 $roomType=unserialize(urldecode($_GET['type']));
 $_SESSION['roomType']=$roomType;
-
 $nameErr=$timeErr=$check_outErr=$check_inErr=$occupancyErr="";
 $name=$time=$check_out=$check_in=$occupancy="";
+
 if(isset($_POST['savedata']))
 {
  
@@ -65,7 +65,7 @@ if(isset($_POST['savedata']))
   
   if(!empty($nameErr)|| !empty($timeErr)|| !empty($check_outErr)|| !empty($check_inErr)|| !empty($occupancyErr))
   {
-    echo "please fill all the details";
+    echo "Please fill all the details";
   }
    
   else{
@@ -101,6 +101,7 @@ if(isset($_POST['savedata']))
   <script src="js/bootstrap.min.js"></script>
   <link href="fontawesome/css/all.css" rel="stylesheet">
   <link href="css/style.css"rel="stylesheet"/>
+  
 </head>
 <body style="margin-top:60px;">
   <?php
@@ -130,7 +131,7 @@ if(isset($_POST['savedata']))
               <div class="row">
                 <div class="control-label col-sm-5"><h4>Check In Date :</h4></div>
                   <div class="col-sm-7">
-                  <input type="date" name="cdate" class="form-control"value="<?php echo htmlspecialchars($check_in);?>">
+                  <input type="date" name="cdate" min="<?php echo date('Y-m-d'); ?>" class="form-control"value="<?php echo htmlspecialchars($check_in);?>">
                   <span class="text-danger"><?php if(isset($check_inErr)) echo htmlspecialchars($check_inErr);?></span>
                   </div>
               </div>
@@ -153,7 +154,7 @@ if(isset($_POST['savedata']))
               <div class="row">
                 <div class="control-label col-sm-5"><h4>Check Out Date :</h4></div>
                 <div class="col-sm-7">
-                  <input type="date" name="codate" class="form-control" value="<?php echo htmlspecialchars($check_out);?>">
+                  <input type="date" name="codate" min="<?php echo date('Y-m-d'); ?>" class="form-control" value="<?php echo htmlspecialchars($check_out);?>">
                   <span class="text-danger"><?php if(isset($check_outErr)) echo htmlspecialchars($check_outErr);?></span>
                 </div> 
               </div>
