@@ -29,13 +29,13 @@ if(isset($send))
   }
 
 
-  if(empty($_POST['mob']))
+  if(empty($_POST['mobi']))
   {
     $mobileErr="Enter Mobile Number";
   }
   else
    {
-      $mobile=$_POST['mob'];
+      $mobile=$_POST['mobi'];
      
       if(!preg_match('/^[0-9]{10}+$/', $mobile))
       {
@@ -57,7 +57,7 @@ if(isset($send))
     }
     else
     {
-      mysqli_query($con,"insert into feedback values('','$n','$e','$mob','$msg')");	
+      mysqli_query($con,"insert into feedback values('','$n','$e','$mobi','$msg')");	
       $msg= "<h4 style='color:green;'>feedback sent successfully</h4>";
     }
   }
@@ -99,10 +99,22 @@ if(isset($send))
           <input type="text" name="e" class="form-control" id="#"placeholder="Email">
           <span class="text-danger"><?php if(isset($emailErr)) echo htmlspecialchars($emailErr);?></span>
         </div>
-        <div class="form-group">
-          <input type="Number" name="mob" class="form-control" id="#"placeholder="Mobile Number">
-          <span class="text-danger"><?php if(isset($mobileErr)) echo htmlspecialchars($mobileErr);?></span>
-        </div>
+        <div class="form-group"> 
+        <div class="control-label col-sm-5">
+            <select  name="zip" id=""style="width:40%; height:33px; margin:-10px 0px 0px -100px; border:1px solid black; border-radius:5px;">
+                <option value="">+977</option>
+                <option value="">+91</option>
+                <option value="">+880</option>
+                <option value="">+93</option>
+                <option value="">+90</option>
+                <option value="">+61</option>
+              </select> 
+            </div>
+          <div class="col-sm-7">
+              <input  style="margin:-10px 0px 0px -100px; width:100%;"type="number" name="mobi" class="form-control"placeholder="Enter Your Mobile Number" value="<?php echo htmlspecialchars($mobile);?>">
+              <span class="text-danger"><p style="margin-left:-150px;"><?php if(isset($mobileErr)) echo htmlspecialchars($mobileErr);?></p></span>
+          </div>
+        </div><br>
         <div class="form-group">
           <textarea type="Text" name="msg" class="form-control" id="#"placeholder="Type Your Message"></textarea>
           <span class="text-danger"><?php if(isset($msgErr)) echo htmlspecialchars($msgErr);?></span>

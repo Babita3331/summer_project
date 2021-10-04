@@ -5,7 +5,6 @@ $roomType=$_GET['type'];
 if($_SESSION['create_account_logged_in']!="")
 {
 header('location:Booking Form.php?type='.urlencode(serialize($roomType)));
-
 }
 error_reporting(1);
 require('connection.php');
@@ -74,7 +73,7 @@ include('Menu Bar.php');
 <div class="container-fluid"><!-- Primary Id-->
   <div class="container">
     <div class="row"><br>
-    <center><?php echo $GET['msg'];?></center>
+    <center><?php echo $_GET['msg'];?></center>
       <div class="col-sm-4"></div>
         <div class="col-sm-4 text-center"style="box-shadow:2px 2px 2px;background-color:#f4ac41;"><br>
 

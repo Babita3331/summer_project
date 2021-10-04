@@ -39,7 +39,7 @@ $eid=$_SESSION['create_account_logged_in'];
 
 <?php 
 $i=1;
-$query="select * from room_booking_details";
+$query="select * from room_booking_details where email='$eid'";
 $sql=mysqli_query($con,$query);
 while($res=mysqli_fetch_assoc($sql))
 {

@@ -48,6 +48,7 @@ if(isset($_POST['save']))
         $mobileErr="Numbers should be equal to 10";
       }
     }
+
     if(empty($_POST['addr']))
     {
       $addressErr="Enter Address";
@@ -68,7 +69,7 @@ if(isset($_POST['save']))
 
     if(empty($_POST['countr']))
     {
-      $countryErr="Select Gender";
+      $countryErr="Select Country";
     }
     else{
       
@@ -101,8 +102,7 @@ if(isset($_POST['save']))
         if(mysqli_query($con,$sql))
         {
           $msg= "<h1 style='color:green'>Data Saved Successfully</h1>"; 
-        header('location:Login.php?msg='.$msg); 
-        
+          header('location:Login.php?msg='.$msg); 
         }
       }
   
@@ -116,12 +116,11 @@ if(isset($_POST['save']))
   <title>Hotel Management System</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="fontawesome/css/all.css" rel="stylesheet">
   <link href="css/style.css"rel="stylesheet"/>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
 </head>
 <body style="margin-top:50px;">
   <?php 
@@ -146,7 +145,7 @@ include('Menu Bar.php');
 
         <div class="form-group">
             <div class="control-label col-sm-5"><h4>Email-Id:</h4></div>
-          <div class="col-sm-7">
+           <div class="col-sm-7">
               <input type="text" name="email" class="form-control"placeholder="Enter Your Email-id" value="<?php echo htmlspecialchars($email);?>">
               <span class="text-danger"><?php if(isset($emailErr)) echo htmlspecialchars($emailErr);?></span>
           </div>
@@ -161,9 +160,21 @@ include('Menu Bar.php');
         </div>
 
         <div class="form-group">
-            <div class="control-label col-sm-5"><h4>Mobile No:</h4></div>
-          <div class="col-sm-7">
-              <input type="numberx" name="mobi" class="form-control"placeholder="Enter Your Mobile Number" value="<?php echo htmlspecialchars($mobile);?>">
+            <div class="control-label col-sm-3"><h4 style="margin-left:150px;">Mobile:</h4></div>
+            <div class="control-label col-sm-3">
+            <select name="zip" id=""style="width:49%; height:33px; margin:-10px 0px 0px 100px; border:none; border-radius:5px;">
+                <option value="">+977</option>
+                <option value="">+91</option>
+                <option value="">+880</option>
+                <option value="">+93</option>
+                <option value="">+90</option>
+                <option value="">+61</option>
+              </select> 
+            </div>
+            
+          <div class="col-sm-6">
+              <input  style="margin-left:10px;"type="number" name="mobi" class="form-control"placeholder="Enter Your Mobile Number" value="<?php echo htmlspecialchars($mobile);?>">
+           
               <span class="text-danger"><?php if(isset($mobileErr)) echo htmlspecialchars($mobileErr);?></span>
           </div>
         </div>
@@ -192,6 +203,7 @@ include('Menu Bar.php');
           <div class="col-sm-7">
             <select name="countr" class="form-control">
               <option value="">---</option>
+              <option value="nepal" <?php echo $_POST['nepal'] == "nepal" ?  'selected':""; ?>>Nepal</option>
               <option value="usa" <?php echo $_POST['countr'] == "usa" ?  'selected':""; ?>>USA</option>
               <option value="india"<?php echo $_POST['countr'] == "india" ?  'selected':""; ?>>India</option>
               <option value="srilanka"<?php echo $_POST['countr'] == "srilanka" ?  'selected':""; ?>>SriLanka</option>

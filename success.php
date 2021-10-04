@@ -5,7 +5,7 @@ $roomType= $_GET['type'];
 $name= $_GET['name'];
 $success= $_GET['success']; 
 $error= $_GET['error']; 
-
+echo $roomType;
 ?>
 
 <html>
